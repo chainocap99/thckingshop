@@ -3,101 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THC KING SHOP | Legend of Speed</title>
+<title>THC KING SHOP</title>
 
 <style>
+*{box-sizing:border-box}
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  background:#0b1a12;
+  background:#08140d;
   color:#eafff3;
 }
-header{
-  background:linear-gradient(135deg,#1aff64,#0bbf4f);
-  padding:20px;
+
+/* NAVBAR */
+.nav{
+  background:#0b1a12;
+  padding:14px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid rgba(26,255,100,.2);
+}
+.nav h1{
+  margin:0;
+  font-size:18px;
+  color:#1aff64;
+}
+
+/* BANNER */
+.banner{
+  background:linear-gradient(135deg,#1aff64,#0bbf4f,#063b22);
+  padding:26px 16px;
   text-align:center;
+}
+.banner h2{
+  margin:0;
   color:#003d1f;
 }
-header h1{margin:0;font-size:26px}
-header p{margin:6px 0;font-weight:bold}
-
-.container{padding:16px}
-
-.card{
-  background:#14281e;
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:16px;
-}
-
-.price{
-  color:#1aff64;
+.banner p{
+  margin:6px 0 0;
   font-weight:bold;
-  margin:8px 0;
+  color:#003d1f;
 }
 
+/* CATEGORY */
+.section{
+  padding:18px 14px;
+}
+.section h3{
+  margin:0 0 10px;
+  color:#1aff64;
+}
+
+.category{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+.cat-card{
+  min-width:140px;
+  background:#0f2418;
+  border-radius:14px;
+  padding:10px;
+  text-align:center;
+  border:1px solid rgba(26,255,100,.25);
+}
+.cat-card img{
+  width:100%;
+  border-radius:10px;
+}
+.cat-card p{
+  margin:8px 0 0;
+  font-weight:bold;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+.product{
+  background:#0f2418;
+  border-radius:16px;
+  padding:12px;
+  border:1px solid rgba(26,255,100,.25);
+}
+.product img{
+  width:100%;
+  border-radius:12px;
+}
+.product h4{
+  margin:8px 0 4px;
+  color:#1aff64;
+}
+.price{
+  font-weight:bold;
+  margin-bottom:8px;
+}
 button{
   width:100%;
-  padding:14px;
+  padding:10px;
   border:none;
   border-radius:10px;
-  background:#1aff64;
+  background:linear-gradient(135deg,#1aff64,#0bbf4f);
   color:#003d1f;
-  font-size:16px;
   font-weight:bold;
+}
+button:active{transform:scale(.97)}
+
+.footer{
+  text-align:center;
+  font-size:12px;
+  opacity:.6;
+  margin:20px 0;
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="nav">
   <h1>THC KING SHOP</h1>
-  <p>Legend of Speed</p>
-  <p>กดสั่งซื้อในเว็บ ข้อมูลเด้งให้พ่อค้า</p>
-</header>
+</div>
 
-<div class="container">
+<div class="banner">
+  <h2>Legend of Speed</h2>
+  <p>กดสั่งซื้อในเว็บ ข้อมูลเด้งหาพ่อค้า</p>
+</div>
 
-  <div class="card">
-    <h3>🐾 สัตว์บัค</h3>
-    <div class="price">1M = 5 บาท</div>
-    <button onclick="order('สัตว์บัค 1M = 5 บาท')">สั่งซื้อ</button>
+<!-- หมวดหมู่ -->
+<div class="section">
+  <h3>หมวดหมู่</h3>
+  <div class="category">
+    <div class="cat-card">
+      <img src="https://drive.google.com/uc?export=view&id=1SQXVvzfUIlq9zZw7vvf1rV3wLq5ibW6F">
+      <p>Pets</p>
+    </div>
+    <div class="cat-card">
+      <img src="https://drive.google.com/uc?export=view&id=1TfWHCenQEMjlFoZD4Zu_jwNUUJsyNDNN">
+      <p>รับฟาร์ม</p>
+    </div>
+    <div class="cat-card">
+      <div style="height:90px;border-radius:10px;background:#08140d;display:flex;align-items:center;justify-content:center;opacity:.5">
+        ID
+      </div>
+      <p>ขายไอดี</p>
+    </div>
   </div>
+</div>
 
-  <div class="card">
-    <h3>💎 ฟาร์มเพชร</h3>
-    <div class="price">1B = 1 บาท</div>
-    <button onclick="order('ฟาร์มเพชร 1B = 1 บาท')">สั่งซื้อ</button>
+<!-- สินค้า -->
+<div class="section">
+  <h3>สินค้า</h3>
+
+  <div class="products">
+
+    <!-- Pets -->
+    <div class="product">
+      <img src="https://drive.google.com/uc?export=view&id=1eOKWyfvTcbVkQY6xb_qtKBbSNE6K8g0H">
+      <h4>สัตว์บัค</h4>
+      <div class="price">1M = 5 บาท</div>
+      <button onclick="order('สัตว์บัค','1M = 5 บาท')">สั่งซื้อ</button>
+    </div>
+
+    <!-- ฟาร์มความเร็ว -->
+    <div class="product">
+      <div style="height:120px;border-radius:12px;background:#08140d;display:flex;align-items:center;justify-content:center;opacity:.6">
+        ⚡
+      </div>
+      <h4>ฟาร์มความเร็ว</h4>
+      <div class="price">1B = 1 บาท</div>
+      <button onclick="order('ฟาร์มความเร็ว','1B = 1 บาท')">สั่งซื้อ</button>
+    </div>
+
+    <!-- ฟาร์มเพชร -->
+    <div class="product">
+      <div style="height:120px;border-radius:12px;background:#08140d;display:flex;align-items:center;justify-content:center;opacity:.6">
+        💎
+      </div>
+      <h4>ฟาร์มเพชร</h4>
+      <div class="price">1B = 1 บาท</div>
+      <button onclick="order('ฟาร์มเพชร','1B = 1 บาท')">สั่งซื้อ</button>
+    </div>
+
   </div>
+</div>
 
-  <div class="card">
-    <h3>⚡ ฟาร์มความเร็ว</h3>
-    <div class="price">1B = 1 บาท</div>
-    <button onclick="order('ฟาร์มความเร็ว 1B = 1 บาท')">สั่งซื้อ</button>
-  </div>
-
+<div class="footer">
+  © THC KING SHOP
 </div>
 
 <script>
-function order(service){
-  const user = prompt("ชื่อ Roblox ของคุณ:");
+function order(name, price){
+  const user = prompt("ชื่อ Roblox:");
   if(!user) return;
 
   const amount = prompt("จำนวนที่ต้องการ:");
   if(!amount) return;
 
-  const result =
+  alert(
     "📌 ออเดอร์ใหม่\n\n" +
-    "บริการ: " + service + "\n" +
+    "ร้าน: THC KING SHOP\n" +
+    "บริการ: " + name + "\n" +
+    "ราคา: " + price + "\n" +
     "ชื่อ Roblox: " + user + "\n" +
-    "จำนวน: " + amount + "\n\n" +
-    "ก็อปข้อความนี้ไปจัดการต่อได้เลย";
-
-  alert(result);
-  console.log(result);
+    "จำนวน: " + amount
+  );
 }
 </script>
 
 </body>
-</html>
+  </html>
