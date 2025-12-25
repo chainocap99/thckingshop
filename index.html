@@ -2,29 +2,50 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THC KING SHOP</title>
 <style>
-body { font-family: sans-serif; background:#e0f2e9; margin:0; padding:0;}
-header { background:#2ecc71; color:white; padding:10px; text-align:center;}
+/* ===== General Styles ===== */
+body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#e0f2e9;}
+header { background:#2ecc71; color:white; padding:15px 0; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
 h2,h3 { margin:5px 0;}
-.container { padding:10px;}
-button { background:#27ae60; color:white; padding:8px 12px; border:none; cursor:pointer; margin:5px; border-radius:5px;}
-button:hover { background:#2ecc71;}
-.card { border:1px solid #aaa; border-radius:5px; padding:10px; margin:5px; display:inline-block; text-align:center;}
-.card img { width:120px; height:120px; object-fit:cover; border-radius:5px;}
-#chat-box, #order-box { border:1px solid #aaa; padding:5px; height:200px; overflow-y:scroll; background:white; margin-bottom:10px;}
-input[type=text], input[type=password], input[type=email] { padding:5px; width:80%; margin-bottom:5px;}
+.container { padding:15px; max-width:1000px; margin:auto;}
+
+/* ===== Buttons ===== */
+button { background:#27ae60; color:white; padding:10px 20px; border:none; cursor:pointer; margin:5px; border-radius:8px; font-weight:bold; transition:all 0.3s ease;}
+button:hover { background:#2ecc71; transform:scale(1.05); box-shadow:0 4px 8px rgba(0,0,0,0.3);}
+
+/* ===== Cards ===== */
+.cards { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; }
+.card { background:white; border-radius:10px; overflow:hidden; width:180px; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:all 0.3s ease; text-align:center; padding:10px;}
+.card:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.3);}
+.card img { width:100%; height:150px; object-fit:cover; border-radius:8px;}
+
+/* ===== Input ===== */
+input[type=text], input[type=password], input[type=email] { padding:8px; width:90%; margin:5px 0; border-radius:5px; border:1px solid #ccc;}
+
+/* ===== Chat ===== */
+#chat-box, #chat-box-client, #order-box { border:1px solid #aaa; padding:8px; height:200px; overflow-y:scroll; background:white; margin-bottom:10px; border-radius:8px;}
+p { margin:4px 0; }
+
+/* ===== Responsive ===== */
+@media(max-width:600px){
+  .cards { flex-direction:column; align-items:center; }
+  .card { width:80%; }
+}
 </style>
+
 <!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
+
 <body>
 
 <header>
 <h2>THC KING SHOP</h2>
-<p>ร้านเกมออนไลน์</p>
+<p>ร้านเกมออนไลน์ – สัตว์บัค & ฟาร์ม</p>
 </header>
 
 <div class="container">
@@ -52,16 +73,21 @@ input[type=text], input[type=password], input[type=email] { padding:5px; width:8
 <!-- หน้า ลูกค้า -->
 <div id="client-div" style="display:none;">
 <h3>สินค้า</h3>
+<div class="cards">
 <div class="card">
-<img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค"><br>
-สัตว์บัค 1M = 5 บาท<br>
+<img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค">
+<h4>สัตว์บัค</h4>
+<p>1M = 5 บาท</p>
 <button onclick="order('สัตว์บัค',5)">สั่งซื้อ</button>
 </div>
+
 <div class="card">
 <img src="https://i.postimg.cc/d3X1s1cs/IMG-20251225-160016.jpg" alt="ฟาร์ม">
-ฟาร์ม ความเร็ว 1B = 1 บาท<br>
-ฟาร์ม เพชร 1B = 1 บาท<br>
+<h4>ฟาร์ม</h4>
+<p>ความเร็ว 1B = 1 บาท</p>
+<p>เพชร 1B = 1 บาท</p>
 <button onclick="order('ฟาร์ม',1)">สั่งซื้อ</button>
+</div>
 </div>
 
 <h3>โอนเงิน</h3>
@@ -193,5 +219,6 @@ function loadOrders(){
     });
 }
 </script>
+
 </body>
-</html>
+  </html>
