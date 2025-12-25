@@ -1,83 +1,52 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>THC KING SHOP | Legend of Speed</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THC KING SHOP | Legend of Speed</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      background:#0b1a12;
-      color:#eafff3;
-    }
-    header{
-      background:linear-gradient(135deg,#1aff64,#0bbf4f);
-      padding:20px;
-      text-align:center;
-      color:#003d1f;
-    }
-    header h1{
-      margin:0;
-      font-size:26px;
-      font-weight:bold;
-    }
-    header p{
-      margin:6px 0 0;
-      font-size:14px;
-      font-weight:bold;
-    }
-    .container{
-      padding:16px;
-    }
-    .section-title{
-      margin:20px 0 10px;
-      font-size:18px;
-      color:#1aff64;
-      font-weight:bold;
-    }
-    .card{
-      background:#14281e;
-      border-radius:14px;
-      padding:14px;
-      margin-bottom:14px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.4);
-    }
-    .price{
-      color:#1aff64;
-      font-weight:bold;
-      margin:6px 0 10px;
-      font-size:16px;
-    }
-    button{
-      width:100%;
-      padding:12px;
-      border:none;
-      border-radius:10px;
-      background:#1aff64;
-      color:#003d1f;
-      font-size:16px;
-      font-weight:bold;
-      cursor:pointer;
-    }
-    .info{
-      font-size:13px;
-      line-height:1.6;
-      opacity:0.9;
-    }
-    footer{
-      text-align:center;
-      font-size:12px;
-      opacity:0.7;
-      padding:14px;
-    }
-    a{
-      color:#1aff64;
-      text-decoration:none;
-      font-weight:bold;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#0b1a12;
+  color:#eafff3;
+}
+header{
+  background:linear-gradient(135deg,#1aff64,#0bbf4f);
+  padding:20px;
+  text-align:center;
+  color:#003d1f;
+}
+header h1{margin:0;font-size:26px}
+header p{margin:6px 0;font-weight:bold}
+
+.container{padding:16px}
+
+.card{
+  background:#14281e;
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:16px;
+}
+
+.price{
+  color:#1aff64;
+  font-weight:bold;
+  margin:8px 0;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#1aff64;
+  color:#003d1f;
+  font-size:16px;
+  font-weight:bold;
+}
+</style>
 </head>
 
 <body>
@@ -85,40 +54,50 @@
 <header>
   <h1>THC KING SHOP</h1>
   <p>Legend of Speed</p>
-  <p>+1 พ่อค้านิสัยดีไม่บิด | -1 พ่อค้าบิด (พร้อมหลักฐาน)</p>
+  <p>กดสั่งซื้อในเว็บ ข้อมูลเด้งให้พ่อค้า</p>
 </header>
 
 <div class="container">
 
-  <div class="section-title">🐾 สัตว์บัค</div>
   <div class="card">
-    <h3>สัตว์บัค</h3>
+    <h3>🐾 สัตว์บัค</h3>
     <div class="price">1M = 5 บาท</div>
-    <button>สั่งซื้อ / เติมเงิน</button>
-  </div>
-
-  <div class="section-title">⚡ รับฟาร์ม</div>
-  <div class="card">
-    <h3>ฟาร์มเพชร</h3>
-    <div class="price">1B = 1 บาท</div>
-    <button>สั่งซื้อ / เติมเงิน</button>
+    <button onclick="order('สัตว์บัค 1M = 5 บาท')">สั่งซื้อ</button>
   </div>
 
   <div class="card">
-    <h3>ฟาร์มความเร็ว</h3>
+    <h3>💎 ฟาร์มเพชร</h3>
     <div class="price">1B = 1 บาท</div>
-    <button>สั่งซื้อ / เติมเงิน</button>
+    <button onclick="order('ฟาร์มเพชร 1B = 1 บาท')">สั่งซื้อ</button>
   </div>
 
-  <div class="section-title">📩 ติดต่อร้าน</div>
-  <div class="card info">
-    Facebook: ท่าน'น ชาย'ย<br>
-    Line: <a href="https://line.me/R/ti/p/@THCKINGSHOP" target="_blank">@THCKINGSHOP</a>
+  <div class="card">
+    <h3>⚡ ฟาร์มความเร็ว</h3>
+    <div class="price">1B = 1 บาท</div>
+    <button onclick="order('ฟาร์มความเร็ว 1B = 1 บาท')">สั่งซื้อ</button>
   </div>
 
-  <div class="section-title">📜 วิธีซื้อ & กฎร้าน</div>
-  <div class="card info">
-    1. เลือกบริการที่ต้องการ<br>
-    2. ติดต่อร้านผ่าน Facebook หรือ Line<br>
-    3. แจ้งชื่อ Roblox + จำนวนที่ต้องการ<br>
-    4
+</div>
+
+<script>
+function order(service){
+  const user = prompt("ชื่อ Roblox ของคุณ:");
+  if(!user) return;
+
+  const amount = prompt("จำนวนที่ต้องการ:");
+  if(!amount) return;
+
+  const result =
+    "📌 ออเดอร์ใหม่\n\n" +
+    "บริการ: " + service + "\n" +
+    "ชื่อ Roblox: " + user + "\n" +
+    "จำนวน: " + amount + "\n\n" +
+    "ก็อปข้อความนี้ไปจัดการต่อได้เลย";
+
+  alert(result);
+  console.log(result);
+}
+</script>
+
+</body>
+</html>
