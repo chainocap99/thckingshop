@@ -3,36 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THC KING SHOP</title>
+<title>THC KING SHOP - Luxury</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 body {
   margin:0; padding:0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #e0f2e9, #a3e4c6);
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg,#d4f7e5,#a3e4c6);
+  background-image: url('https://i.postimg.cc/yY4xbDjv/Screenshot-2025-12-25-15-57-49-42-a23b203fd3aafc6dcb84e438dda678b6.jpg');
+  background-size: cover;
+  background-blend-mode: overlay;
+  overflow-x: hidden;
 }
 
 /* Header */
 header {
-  background: linear-gradient(90deg,#27ae60,#2ecc71);
+  background: rgba(39,174,96,0.85);
   color:white; padding:25px 0; text-align:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+  box-shadow:0 6px 15px rgba(0,0,0,0.4);
+  border-bottom: 4px solid gold;
+  position: relative;
 }
-header h2 { font-size:2.2em; }
-header p { font-size:1.1em; margin-top:5px; }
+header h2 { font-size:2.6em; font-weight:bold; text-shadow:1px 1px 4px rgba(0,0,0,0.5);}
+header p { font-size:1.2em; margin-top:5px; text-shadow:1px 1px 3px rgba(0,0,0,0.4); }
 
 /* Container */
 .container { padding:20px; max-width:1000px; margin:auto; }
 
 /* Cards */
-.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+.cards { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; }
 .card {
-  background:white; border-radius:15px; overflow:hidden;
-  width:200px; box-shadow:0 6px 15px rgba(0,0,0,0.25);
-  text-align:center; padding:10px; transition:all 0.4s ease;
+  background: rgba(255,255,255,0.95);
+  border-radius:20px; overflow:hidden;
+  width:220px; box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  text-align:center; padding:15px; transition:all 0.5s ease;
+  border: 2px solid #27ae60;
+  opacity:0; transform: translateY(50px);
+  position: relative;
 }
-.card:hover { transform:scale(1.05) translateY(-5px); box-shadow:0 12px 20px rgba(0,0,0,0.35);}
-.card img { width:100%; height:160px; object-fit:cover; border-radius:10px; transition:all 0.3s ease; }
-.card img:hover { transform:scale(1.05); }
+.card.show { opacity:1; transform: translateY(0);}
+.card img { width:100%; height:160px; object-fit:cover; border-radius:12px; transition:all 0.3s ease; }
+.card img:hover { transform:scale(1.05); box-shadow:0 0 15px gold; }
 .card h4 { margin:10px 0 5px 0; font-weight:bold; color:#27ae60; }
 .card p { margin:5px 0; font-size:0.95em; }
 
@@ -40,23 +51,49 @@ header p { font-size:1.1em; margin-top:5px; }
 button {
   background: linear-gradient(90deg,#27ae60,#2ecc71);
   color:white; padding:10px 20px; border:none; cursor:pointer;
-  border-radius:12px; font-weight:bold; transition:all 0.3s ease;
-  position:relative; overflow:hidden;
+  border-radius:15px; font-weight:bold; transition:all 0.3s ease;
+  position:relative; overflow:hidden; margin-top:5px;
 }
 button::after {
   content:""; position:absolute; width:0; height:100%; top:0; left:0;
-  background: rgba(255,255,255,0.3); transition:0.5s;
+  background: rgba(255,255,255,0.25); transition:0.5s;
 }
 button:hover::after { width:100%; }
-button:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.3); }
+button:hover { transform:scale(1.05); box-shadow:0 6px 15px rgba(0,0,0,0.35); }
+
+/* Ripple effect */
+button:active::after { transition:0s; }
+
+/* Inputs */
+input[type=number] {
+  width:60px; padding:5px; border-radius:8px; border:1px solid #27ae60;
+  text-align:center; margin-top:5px; font-weight:bold;
+}
 
 /* Orders */
 #orders {
-  background:white; border-radius:12px; padding:15px;
-  box-shadow:0 6px 15px rgba(0,0,0,0.25); margin-top:25px;
+  background: rgba(255,255,255,0.95);
+  border-radius:15px; padding:15px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.35); margin-top:30px;
   max-height:300px; overflow-y:auto;
+  border:2px solid gold;
+  position: relative;
 }
-#orders p { margin:6px 0; }
+#orders p { margin:8px 0; font-weight:bold; color:#27ae60; transition:0.5s; }
+
+/* Sparkle */
+.sparkle {
+  position:absolute; width:6px; height:6px; background:gold;
+  border-radius:50%; pointer-events:none; opacity:0.8;
+  animation: sparkleAnim 1s ease-out forwards;
+}
+@keyframes sparkleAnim {
+  0% { transform: translate(0,0) scale(1); opacity:1;}
+  100% { transform: translate(calc(var(--x)*1px), calc(var(--y)*-1px)) scale(0); opacity:0;}
+}
+
+/* Fade in cards animation */
+@keyframes fadeInUp { 0% { opacity:0; transform:translateY(50px);} 100% { opacity:1; transform:translateY(0);} }
 
 /* Responsive */
 @media(max-width:600px){
@@ -76,11 +113,13 @@ button:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.3); }
 
 <h3>สินค้า</h3>
 <div class="cards">
+
   <div class="card">
     <img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค">
     <h4>สัตว์บัค</h4>
     <p>1M = 5 บาท</p>
-    <button onclick="order('สัตว์บัค',5)">สั่งซื้อ</button>
+    <label>จำนวน: <input type="number" id="count-bug" value="1" min="1"></label><br>
+    <button onclick="confirmOrder('สัตว์บัค',5,'count-bug', this)">สั่งซื้อ</button>
   </div>
 
   <div class="card">
@@ -88,8 +127,10 @@ button:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.3); }
     <h4>ฟาร์ม</h4>
     <p>ความเร็ว 1B = 1 บาท</p>
     <p>เพชร 1B = 1 บาท</p>
-    <button onclick="order('ฟาร์ม',1)">สั่งซื้อ</button>
+    <label>จำนวน: <input type="number" id="count-farm" value="1" min="1"></label><br>
+    <button onclick="confirmOrder('ฟาร์ม',1,'count-farm', this)">สั่งซื้อ</button>
   </div>
+
 </div>
 
 <h3>Order (คิว)</h3>
@@ -98,17 +139,64 @@ button:hover { transform:scale(1.05); box-shadow:0 6px 12px rgba(0,0,0,0.3); }
 </div>
 
 <script>
-// เก็บออเดอร์ชั่วคราว
 let orderList = [];
 
-// สั่งซื้อสินค้า
-function order(product, price){
+// Animation cards on load
+window.addEventListener('load', ()=>{
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card,i)=>{
+    setTimeout(()=>{ card.classList.add('show'); }, i*200);
+  });
+});
+
+// Confirm before buy with ripple + sparkle
+function confirmOrder(product, price, countId, btn){
+  const count = parseInt(document.getElementById(countId).value);
+  if(count <= 0){ alert('กรุณาใส่จำนวนมากกว่า 0'); return; }
+
+  // Ripple effect
+  const circle = document.createElement('span');
+  const rect = btn.getBoundingClientRect();
+  circle.style.width = circle.style.height = Math.max(rect.width, rect.height)+'px';
+  circle.style.left = event.clientX - rect.left - rect.width/2 + 'px';
+  circle.style.top = event.clientY - rect.top - rect.height/2 + 'px';
+  circle.style.position = 'absolute';
+  circle.style.background = 'rgba(255,255,255,0.5)';
+  circle.style.borderRadius = '50%';
+  circle.style.transform = 'scale(0)';
+  circle.style.animation = 'ripple 0.6s linear';
+  btn.appendChild(circle);
+  setTimeout(()=>btn.removeChild(circle),600);
+
+  const confirmBuy = confirm(`คุณต้องการสั่งซื้อ ${product} จำนวน ${count} ชิ้น ราคา ${price*count} บาท ใช่หรือไม่?`);
+  if(confirmBuy){
+    addOrder(product, price, count);
+    createSparkle(btn);
+  }
+}
+
+// Add sparkle effect
+function createSparkle(btn){
+  for(let i=0;i<15;i++){
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.setProperty('--x', Math.random()*100-50);
+    sparkle.style.setProperty('--y', Math.random()*100);
+    sparkle.style.left = Math.random()*btn.offsetWidth + 'px';
+    sparkle.style.top = Math.random()*btn.offsetHeight + 'px';
+    btn.appendChild(sparkle);
+    setTimeout(()=>btn.removeChild(sparkle),1000);
+  }
+}
+
+// Add order
+function addOrder(product, price, count){
   const timestamp = new Date().toLocaleString();
-  orderList.push({product, price, time: timestamp});
+  orderList.push({product, price, count, time: timestamp});
   renderOrders();
 }
 
-// แสดงออเดอร์
+// Render orders
 function renderOrders(){
   const ordersDiv = document.getElementById("orders");
   if(orderList.length === 0){
@@ -116,7 +204,7 @@ function renderOrders(){
   } else {
     ordersDiv.innerHTML = "";
     orderList.forEach((item,index)=>{
-      ordersDiv.innerHTML += `<p>${index+1}. สั่ง ${item.product} ราคา ${item.price} บาท เวลา: ${item.time}</p>`;
+      ordersDiv.innerHTML += `<p style="animation:fadeInUp 0.5s ease;">${index+1}. สั่ง ${item.product} จำนวน ${item.count} ราคา ${item.price*item.count} บาท เวลา: ${item.time}</p>`;
     });
   }
 }
