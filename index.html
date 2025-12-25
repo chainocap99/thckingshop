@@ -3,228 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>THC KING SHOP - Premium</title>
+<title>THC KING SHOP - LavaBux Style</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-/* พื้นหลัง luxury gradient + texture overlay */
 body {
   margin:0; padding:0;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg,#d4f7e5,#a3e4c6);
-  overflow-x: hidden;
-  position: relative;
-}
-body::before {
-  content:"";
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  background-image: url('https://i.postimg.cc/Z5tBQF9K/luxury-texture.png'); /* ตัวอย่าง texture overlay */
-  background-size: cover; opacity:0.15; pointer-events:none;
-  animation: moveBackground 60s linear infinite;
-}
-@keyframes moveBackground { 0% {background-position:0 0;} 100% {background-position:1000px 1000px;} }
-
-/* Floating ornament particles */
-.particle {
-  position: absolute;
-  width: 25px; height: 25px;
-  pointer-events: none;
-  opacity: 0.8;
-  animation: floatParticle 15s linear infinite;
-}
-@keyframes floatParticle {
-  0% { transform: translate(0,0) rotate(0deg) scale(1);}
-  25% { transform: translate(50px,-100px) rotate(45deg) scale(1.2);}
-  50% { transform: translate(-50px,-200px) rotate(90deg) scale(0.8);}
-  75% { transform: translate(100px,-150px) rotate(135deg) scale(1.1);}
-  100% { transform: translate(0,-250px) rotate(180deg) scale(1);}
+  color:#333;
 }
 
 /* Header */
 header {
-  background: rgba(39,174,96,0.85);
-  color:white; padding:25px 0; text-align:center;
-  box-shadow:0 6px 20px rgba(0,0,0,0.5);
-  border-bottom: 4px solid gold;
+  background: linear-gradient(90deg,#27ae60,#2ecc71);
+  color:white;
+  padding:20px 0;
+  text-align:center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   position: relative;
-  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 10px);
 }
-header img { height:60px; margin-bottom:10px; }
-header h2 { font-size:2.6em; font-weight:bold; text-shadow:1px 1px 4px rgba(0,0,0,0.5);}
-header p { font-size:1.2em; margin-top:5px; text-shadow:1px 1px 3px rgba(0,0,0,0.4); }
+header img {
+  height:60px;
+  margin-bottom:10px;
+}
+header h1 {
+  margin:0; font-size:2em; font-weight:bold;
+}
+header p { margin:5px 0 0; font-size:1em; }
 
-/* Container & Cards */
-.container { padding:20px; max-width:1000px; margin:auto; }
-.cards { display:flex; flex-wrap:wrap; gap:25px; justify-content:center; }
+/* Container */
+.container { max-width:1000px; margin:30px auto; padding:0 15px; }
+h2 { margin-bottom:15px; text-align:center; font-weight:bold; }
+
+/* Cards */
+.cards { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
 .card {
-  background: rgba(255,255,255,0.95);
-  border-radius:20px; overflow:hidden;
-  width:220px; box-shadow:0 12px 25px rgba(0,0,0,0.35);
-  text-align:center; padding:15px; transition:all 0.5s ease;
-  border: 2px solid gold;
-  opacity:0; transform: translateY(50px);
-  position: relative;
+  background: linear-gradient(145deg, #e0f8ee, #c0f0d8);
+  border-radius:15px;
+  width:220px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  overflow:hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align:center;
+  padding:15px;
 }
-.card.show { opacity:1; transform: translateY(0);}
-.card img { width:100%; height:160px; object-fit:cover; border-radius:12px; transition:all 0.5s ease; }
-.card img:hover { transform: scale(1.05) rotate(-1deg); box-shadow:0 0 20px gold; }
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+.card img { width:100%; height:160px; object-fit:cover; border-radius:10px; }
 
 /* Buttons */
 button {
   background: linear-gradient(90deg,#27ae60,#2ecc71);
-  color:white; padding:10px 20px; border:none; cursor:pointer;
-  border-radius:15px; font-weight:bold; transition:all 0.3s ease, box-shadow 0.3s ease;
-  position:relative; overflow:hidden; margin-top:5px;
+  color:white; border:none; padding:10px 20px;
+  border-radius:12px; cursor:pointer;
+  font-weight:bold;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-button:hover { box-shadow:0 0 15px gold, 0 0 30px rgba(255,215,0,0.4); transform:scale(1.05);}
-input[type=number] {
-  width:50px; padding:5px; border-radius:8px; border:1px solid #27ae60;
-  text-align:center; margin-top:5px; font-weight:bold;
-}
-.quantity-btn { width:30px; height:30px; margin:0 5px; font-weight:bold; border-radius:50%; border:none; background:#2ecc71; color:white; cursor:pointer; transition:0.3s; }
-.quantity-btn:hover { transform:scale(1.1); }
+button:hover { transform:scale(1.05); box-shadow:0 0 15px rgba(39,174,96,0.7); }
 
-/* Orders */
+/* Quantity */
+.quantity {
+  margin:10px 0;
+  display:flex; justify-content:center; align-items:center;
+}
+.quantity input {
+  width:50px; text-align:center; font-weight:bold;
+  border-radius:8px; border:1px solid #27ae60; margin:0 5px;
+}
+.quantity .qty-btn {
+  width:30px; height:30px;
+  border:none; border-radius:50%; background:#2ecc71;
+  color:white; font-weight:bold; cursor:pointer;
+  transition:0.2s;
+}
+.quantity .qty-btn:hover { transform:scale(1.1); }
+
+/* Order list */
 #orders {
   background: rgba(255,255,255,0.95);
   border-radius:15px; padding:15px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.35); margin-top:30px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.2);
+  margin-top:30px;
   max-height:300px; overflow-y:auto;
-  border:2px solid gold;
+  border:2px solid #27ae60;
 }
-#orders p { margin:8px 0; font-weight:bold; color:#27ae60; transition:0.5s; }
+#orders p { margin:8px 0; font-weight:bold; color:#27ae60; }
 
-/* Fade in cards */
-@keyframes fadeInUp { 0% { opacity:0; transform:translateY(50px);} 100% { opacity:1; transform:translateY(0);} }
+/* Responsive */
 @media(max-width:600px){ .cards { flex-direction:column; align-items:center; } .card { width:90%; } }
+
 </style>
 </head>
 <body>
 
 <header>
 <img src="https://i.postimg.cc/d3X1s1cs/IMG-20251225-160016.jpg" alt="โลโก้ร้าน">
-<h2>THC KING SHOP</h2>
+<h1>THC KING SHOP</h1>
 <p>ร้านเกมออนไลน์ – สัตว์บัค & ฟาร์ม</p>
 </header>
 
 <div class="container">
-<h3>สินค้า</h3>
+<h2>สินค้า</h2>
 <div class="cards">
 
   <div class="card">
     <img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค">
-    <h4>สัตว์บัค</h4>
+    <h3>สัตว์บัค</h3>
     <p>1M = 5 บาท</p>
-    <div>
-      <button class="quantity-btn" onclick="changeQuantity('count-bug', -1)">−</button>
+    <div class="quantity">
+      <button class="qty-btn" onclick="changeQuantity('count-bug',-1)">−</button>
       <input type="number" id="count-bug" value="1" min="1">
-      <button class="quantity-btn" onclick="changeQuantity('count-bug', 1)">+</button>
+      <button class="qty-btn" onclick="changeQuantity('count-bug',1)">+</button>
     </div>
     <p>ราคารวม: <span id="total-bug">5</span> บาท</p>
-    <button onclick="confirmOrder('สัตว์บัค',5,'count-bug', this)">สั่งซื้อ</button>
+    <button onclick="confirmOrder('สัตว์บัค',5,'count-bug')">สั่งซื้อ</button>
   </div>
 
   <div class="card">
     <img src="https://i.postimg.cc/d3X1s1cs/IMG-20251225-160016.jpg" alt="ฟาร์ม">
-    <h4>ฟาร์ม</h4>
+    <h3>ฟาร์ม</h3>
     <p>ความเร็ว 1B = 1 บาท</p>
     <p>เพชร 1B = 1 บาท</p>
-    <div>
-      <button class="quantity-btn" onclick="changeQuantity('count-farm', -1)">−</button>
+    <div class="quantity">
+      <button class="qty-btn" onclick="changeQuantity('count-farm',-1)">−</button>
       <input type="number" id="count-farm" value="1" min="1">
-      <button class="quantity-btn" onclick="changeQuantity('count-farm', 1)">+</button>
+      <button class="qty-btn" onclick="changeQuantity('count-farm',1)">+</button>
     </div>
     <p>ราคารวม: <span id="total-farm">1</span> บาท</p>
-    <button onclick="confirmOrder('ฟาร์ม',1,'count-farm', this)">สั่งซื้อ</button>
+    <button onclick="confirmOrder('ฟาร์ม',1,'count-farm')">สั่งซื้อ</button>
   </div>
 
 </div>
 
-<h3>Order (คิว)</h3>
-<div id="orders">
-<p>ยังไม่มีออเดอร์</p>
-</div>
+<h2>Order (คิว)</h2>
+<div id="orders"><p>ยังไม่มีออเดอร์</p></div>
 
 <script>
-let orderList = [];
+let orderList=[];
 
-// Load animations & floating particles
-window.addEventListener('load', ()=>{
-  const cards = document.querySelectorAll('.card');
-  cards.forEach((card,i)=>{
-    setTimeout(()=>{ card.classList.add('show'); }, i*200);
-  });
-
-  // Floating particles luxury ornaments
-  const particleImages = [
-    'https://i.postimg.cc/3x3ZB7Rt/ornament1.png',
-    'https://i.postimg.cc/8kXGH9PQ/ornament2.png',
-    'https://i.postimg.cc/Nf8kMk9v/ornament3.png'
-  ];
-  for(let i=0;i<30;i++){
-    const p = document.createElement('img');
-    p.src = particleImages[i%particleImages.length];
-    p.classList.add('particle');
-    p.style.left = Math.random()*window.innerWidth+'px';
-    p.style.top = Math.random()*window.innerHeight+'px';
-    p.style.width = (20+Math.random()*20)+'px';
-    p.style.height = (20+Math.random()*20)+'px';
-    p.style.animationDuration = (10+Math.random()*10)+'s';
-    document.body.appendChild(p);
-  }
-});
-
-// Quantity change + update total price
-function changeQuantity(id, delta){
-  const input = document.getElementById(id);
-  let value = parseInt(input.value) + delta;
+function changeQuantity(id,delta){
+  let input=document.getElementById(id);
+  let value=parseInt(input.value)+delta;
   if(value<1) value=1;
-  input.value = value;
-  let price = (id==='count-bug')?5:1;
-  document.getElementById('total-'+id.split('-')[1]).innerText = price * value;
+  input.value=value;
+  let price=(id==='count-bug')?5:1;
+  document.getElementById('total-'+id.split('-')[1]).innerText=price*value;
 }
 
-// Confirm order with sparkle
-function confirmOrder(product, price, countId, btn){
-  const count = parseInt(document.getElementById(countId).value);
-  const totalPrice = price*count;
-  const confirmBuy = confirm(`คุณต้องการสั่งซื้อ ${product} จำนวน ${count} ชิ้น ราคา ${totalPrice} บาท ใช่หรือไม่?`);
-  if(confirmBuy){
-    addOrder(product, price, count);
-    createSparkle(btn);
+function confirmOrder(product,price,countId){
+  let count=parseInt(document.getElementById(countId).value);
+  let total=price*count;
+  if(confirm(`คุณต้องการสั่งซื้อ ${product} จำนวน ${count} ชิ้น ราคา ${total} บาท ใช่หรือไม่?`)){
+    addOrder(product,price,count);
   }
 }
 
-// Local sparkle effect
-function createSparkle(btn){
-  for(let i=0;i<15;i++){
-    const sparkle = document.createElement('div');
-    sparkle.classList.add('particle');
-    sparkle.style.width = sparkle.style.height = '6px';
-    sparkle.style.left = Math.random()*btn.offsetWidth+'px';
-    sparkle.style.top = Math.random()*btn.offsetHeight+'px';
-    sparkle.style.animationDuration = '1.5s';
-    btn.appendChild(sparkle);
-    setTimeout(()=>btn.removeChild(sparkle),1500);
-  }
-}
-
-// Add order
-function addOrder(product, price, count){
-  const timestamp = new Date().toLocaleString();
-  orderList.push({product, price, count, time: timestamp});
+function addOrder(product,price,count){
+  const timestamp=new Date().toLocaleString();
+  orderList.push({product,price,count,time:timestamp});
   renderOrders();
 }
 
-// Render orders
 function renderOrders(){
-  const ordersDiv = document.getElementById("orders");
-  if(orderList.length === 0){
-    ordersDiv.innerHTML = "<p>ยังไม่มีออเดอร์</p>";
+  const ordersDiv=document.getElementById('orders');
+  if(orderList.length===0){
+    ordersDiv.innerHTML="<p>ยังไม่มีออเดอร์</p>";
   } else {
-    ordersDiv.innerHTML = "";
+    ordersDiv.innerHTML="";
     orderList.forEach((item,index)=>{
-      ordersDiv.innerHTML += `<p style="animation:fadeInUp 0.5s ease;">${index+1}. สั่ง ${item.product} จำนวน ${item.count} ราคา ${item.price*item.count} บาท เวลา: ${item.time}</p>`;
+      ordersDiv.innerHTML+=`<p>${index+1}. สั่ง ${item.product} จำนวน ${item.count} ราคา ${item.price*item.count} บาท เวลา: ${item.time}</p>`;
     });
   }
 }
