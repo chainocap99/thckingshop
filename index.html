@@ -5,42 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>THC KING SHOP</title>
 <style>
-/* ===== General Styles ===== */
-body { font-family: 'Segoe UI', sans-serif; margin:0; padding:0; background:#e0f2e9;}
-header { background:#2ecc71; color:white; padding:15px 0; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
+body { margin:0; padding:0; font-family: 'Segoe UI', sans-serif; background:#e0f2e9;}
+header { background:#2ecc71; color:white; padding:20px 0; text-align:center; box-shadow:0 4px 6px rgba(0,0,0,0.2);}
 h2,h3 { margin:5px 0;}
 .container { padding:15px; max-width:1000px; margin:auto;}
 
-/* ===== Buttons ===== */
+/* Buttons */
 button { background:#27ae60; color:white; padding:10px 20px; border:none; cursor:pointer; margin:5px; border-radius:8px; font-weight:bold; transition:all 0.3s ease;}
 button:hover { background:#2ecc71; transform:scale(1.05); box-shadow:0 4px 8px rgba(0,0,0,0.3);}
 
-/* ===== Cards ===== */
+/* Cards */
 .cards { display:flex; flex-wrap:wrap; gap:15px; justify-content:center; }
 .card { background:white; border-radius:10px; overflow:hidden; width:180px; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:all 0.3s ease; text-align:center; padding:10px;}
 .card:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.3);}
 .card img { width:100%; height:150px; object-fit:cover; border-radius:8px;}
 
-/* ===== Input ===== */
-input[type=text], input[type=password], input[type=email] { padding:8px; width:90%; margin:5px 0; border-radius:5px; border:1px solid #ccc;}
+/* Orders list */
+#orders { background:white; border-radius:10px; padding:10px; box-shadow:0 4px 8px rgba(0,0,0,0.2); margin-top:20px; }
 
-/* ===== Chat ===== */
-#chat-box, #chat-box-client, #order-box { border:1px solid #aaa; padding:8px; height:200px; overflow-y:scroll; background:white; margin-bottom:10px; border-radius:8px;}
-p { margin:4px 0; }
-
-/* ===== Responsive ===== */
+/* Responsive */
 @media(max-width:600px){
   .cards { flex-direction:column; align-items:center; }
   .card { width:80%; }
 }
 </style>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 </head>
-
 <body>
 
 <header>
@@ -50,175 +39,54 @@ p { margin:4px 0; }
 
 <div class="container">
 
-<!-- Login / Signup -->
-<div id="auth-div">
-<h3>สมัครสมาชิก / ล็อกอิน</h3>
-<input type="email" id="email" placeholder="อีเมล"><br>
-<input type="password" id="password" placeholder="รหัสผ่าน"><br>
-<button onclick="signup()">สมัครสมาชิก</button>
-<button onclick="login()">ล็อกอิน</button>
-</div>
-
-<!-- หน้า Admin -->
-<div id="admin-div" style="display:none;">
-<h3>ออเดอร์ลูกค้า</h3>
-<div id="order-box"></div>
-
-<h3>แชทลูกค้า</h3>
-<div id="chat-box"></div>
-<input type="text" id="msg" placeholder="พิมพ์ข้อความตอบ...">
-<button onclick="sendMessage()">ส่ง</button>
-</div>
-
-<!-- หน้า ลูกค้า -->
-<div id="client-div" style="display:none;">
 <h3>สินค้า</h3>
 <div class="cards">
-<div class="card">
-<img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค">
-<h4>สัตว์บัค</h4>
-<p>1M = 5 บาท</p>
-<button onclick="order('สัตว์บัค',5)">สั่งซื้อ</button>
+  <div class="card">
+    <img src="https://i.postimg.cc/vBx8PyVM/IMG-20251225-154629.jpg" alt="สัตว์บัค">
+    <h4>สัตว์บัค</h4>
+    <p>1M = 5 บาท</p>
+    <button onclick="order('สัตว์บัค',5)">สั่งซื้อ</button>
+  </div>
+
+  <div class="card">
+    <img src="https://i.postimg.cc/d3X1s1cs/IMG-20251225-160016.jpg" alt="ฟาร์ม">
+    <h4>ฟาร์ม</h4>
+    <p>ความเร็ว 1B = 1 บาท</p>
+    <p>เพชร 1B = 1 บาท</p>
+    <button onclick="order('ฟาร์ม',1)">สั่งซื้อ</button>
+  </div>
 </div>
 
-<div class="card">
-<img src="https://i.postimg.cc/d3X1s1cs/IMG-20251225-160016.jpg" alt="ฟาร์ม">
-<h4>ฟาร์ม</h4>
-<p>ความเร็ว 1B = 1 บาท</p>
-<p>เพชร 1B = 1 บาท</p>
-<button onclick="order('ฟาร์ม',1)">สั่งซื้อ</button>
-</div>
-</div>
-
-<h3>โอนเงิน</h3>
-<p>ธนาคาร: กสิกรไทย</p>
-<p>เลขบัญชี: 217-1-94289-9</p>
-<p>ชื่อบัญชี: ทวีชัย คาล่า</p>
-<img src="https://i.postimg.cc/kGJm0R1s/004999223109827-20251207-103924.jpg" alt="QR Code" width="150">
-
-<h3>แชทหาเจ้าของเว็บ</h3>
-<div id="chat-box-client"></div>
-<input type="text" id="msg-client" placeholder="พิมพ์ข้อความ...">
-<button onclick="sendMessageClient()">ส่ง</button>
-</div>
-
+<h3>Order (คิว)</h3>
+<div id="orders">
+<p>ยังไม่มีออเดอร์</p>
 </div>
 
 <script>
-// Firebase Config
-const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
-
-// Signup
-function signup(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  auth.createUserWithEmailAndPassword(email,password)
-    .then(()=>alert("สมัครสมาชิกเรียบร้อย!"))
-    .catch(err=>alert(err.message));
-}
-
-// Login
-function login(){
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  auth.signInWithEmailAndPassword(email,password)
-    .then((cred)=>{
-      alert("ล็อกอินเรียบร้อย!");
-      checkUserRole(cred.user.email);
-    })
-    .catch(err=>alert(err.message));
-}
-
-// เช็กบัญชี Admin หรือ ลูกค้า
-function checkUserRole(email){
-  const adminEmail = "admin@thcshop.com"; // ใส่อีเมล Admin
-  document.getElementById("auth-div").style.display="none";
-  if(email === adminEmail){
-    document.getElementById("admin-div").style.display="block";
-    loadOrders();
-    loadChat();
-  } else{
-    document.getElementById("client-div").style.display="block";
-    loadChatClient();
-  }
-}
+// เก็บออเดอร์ชั่วคราว
+let orderList = [];
 
 // สั่งซื้อสินค้า
 function order(product, price){
-  const user = auth.currentUser.email;
-  db.collection("orders").add({
-    user:user, product:product, price:price,
-    timestamp:firebase.firestore.FieldValue.serverTimestamp()
-  }).then(()=>alert("สั่งซื้อเรียบร้อย!"));
+  const timestamp = new Date().toLocaleString();
+  orderList.push({product, price, time: timestamp});
+  renderOrders();
 }
 
-// Admin Chat
-function sendMessage(){
-  const text = document.getElementById("msg").value;
-  const user = auth.currentUser.email;
-  db.collection("messages").add({
-    user:user, message:text,
-    timestamp:firebase.firestore.FieldValue.serverTimestamp()
-  });
-  document.getElementById("msg").value="";
-}
-function loadChat(){
-  db.collection("messages").orderBy("timestamp")
-    .onSnapshot(snap=>{
-      const box = document.getElementById("chat-box");
-      box.innerHTML="";
-      snap.forEach(doc=>{
-        const data = doc.data();
-        box.innerHTML+=`<p><b>${data.user}:</b> ${data.message}</p>`;
-      });
+// แสดงออเดอร์
+function renderOrders(){
+  const ordersDiv = document.getElementById("orders");
+  if(orderList.length === 0){
+    ordersDiv.innerHTML = "<p>ยังไม่มีออเดอร์</p>";
+  } else {
+    ordersDiv.innerHTML = "";
+    orderList.forEach((item,index)=>{
+      ordersDiv.innerHTML += `<p>${index+1}. สั่ง ${item.product} ราคา ${item.price} บาท เวลา: ${item.time}</p>`;
     });
-}
-
-// Client Chat
-function sendMessageClient(){
-  const text = document.getElementById("msg-client").value;
-  const user = auth.currentUser.email;
-  db.collection("messages").add({
-    user:user, message:text,
-    timestamp:firebase.firestore.FieldValue.serverTimestamp()
-  });
-  document.getElementById("msg-client").value="";
-}
-function loadChatClient(){
-  db.collection("messages").orderBy("timestamp")
-    .onSnapshot(snap=>{
-      const box = document.getElementById("chat-box-client");
-      box.innerHTML="";
-      snap.forEach(doc=>{
-        const data = doc.data();
-        box.innerHTML+=`<p><b>${data.user}:</b> ${data.message}</p>`;
-      });
-    });
-}
-
-// Load Orders (Admin)
-function loadOrders(){
-  db.collection("orders").orderBy("timestamp")
-    .onSnapshot(snap=>{
-      const box = document.getElementById("order-box");
-      box.innerHTML="";
-      snap.forEach(doc=>{
-        const data = doc.data();
-        box.innerHTML+=`<p>${data.user} สั่ง ${data.product} ราคา ${data.price} บาท</p>`;
-      });
-    });
+  }
 }
 </script>
 
+</div>
 </body>
-  </html>
+</html>
